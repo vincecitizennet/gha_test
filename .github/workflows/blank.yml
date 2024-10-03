@@ -12,15 +12,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    environment:
-      description: 'Environment'
-      default: 'development'
-      required: true
-      type: choice
-      options:
-      - development
-      - staging
-      - production
+    inputs:
+      environment:
+        description: 'Environment'
+        default: 'development'
+        required: true
+        type: choice
+        options:
+        - development
+        - staging
+        - production
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,3 +43,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           git status
+          echo "inputs.environment: ${{ inputs.environment }}"
